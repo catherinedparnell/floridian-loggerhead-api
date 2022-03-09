@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
+import requests
 import constants
 import calculations
-import requests
 import library
 
 app = Flask(__name__)
