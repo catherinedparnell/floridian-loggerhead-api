@@ -1,12 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import requests
 import constants
 import calculations
 import library
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
+@cross_origin()
 def produce_info():
     days_second = request.args.get('days_second', type=int)
 
@@ -28,6 +32,7 @@ def produce_info():
     return jsonify(res)
 
 @app.route('/geo')
+@cross_origin()
 def get_beach_data():
     density = request.args.get('density', type=str)
 
