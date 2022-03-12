@@ -77,13 +77,13 @@ def get_beach_data():
     print('There are', high, 'beaches with high loggerhead nesting patterns')
 
     if not density:
-        response = dict({ "low_beaches": low_beaches, "med_beaches": med_beaches, "high_beaches": high_beaches})
+        res = dict({ "low_beaches": low_beaches, "med_beaches": med_beaches, "high_beaches": high_beaches})
     elif density == "high":
-        response = dict({ 'high_beaches': high_beaches })
+        res = dict({ 'high_beaches': high_beaches })
     elif density == "med":
-        response = dict({ 'med_beaches': med_beaches })
+        res = dict({ 'med_beaches': med_beaches })
     elif density == "low":
-        response = dict({ 'low_beaches': low_beaches })
+        res = dict({ 'low_beaches': low_beaches })
 
     response = jsonify(res)
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
