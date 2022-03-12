@@ -32,7 +32,9 @@ def produce_info():
 
     response = jsonify(res)
     response.headers.add("Access-Control-Allow-Origin", "*")
-
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET')
     return response
 
 @app.route('/geo', methods=["GET"])
@@ -87,5 +89,6 @@ def get_beach_data():
 
     response = jsonify(res)
     response.headers.add("Access-Control-Allow-Origin", "*")
-
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET')
     return response
