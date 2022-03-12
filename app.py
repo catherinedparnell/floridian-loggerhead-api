@@ -9,7 +9,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 @cross_origin()
 def produce_info():
     days_second = request.args.get('days_second', type=int)
@@ -29,9 +29,13 @@ def produce_info():
         "incubationTime": incubation_time,
         "decadeTime": decade_time
         })
-    return jsonify(res)
 
-@app.route('/geo')
+    response = jsonify(res)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
+
+@app.route('/geo', methods=["GET"])
 @cross_origin()
 def get_beach_data():
     density = request.args.get('density', type=str)
@@ -81,4 +85,7 @@ def get_beach_data():
     elif density == "low":
         response = dict({ 'low_beaches': low_beaches })
 
-    return jsonify(response)
+    response = jsonify(res)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
